@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import Item from "./Item";
 
 import {
@@ -13,10 +13,18 @@ import {
 	Typography,
 } from "@mui/material";
 
-import { Add as AddIcon } from "@mui/icons-material";
+import { 
+    Add as AddIcon,
+    LightMode as LightModeIcon,
+    DarkMode as DarkModeIcon,
+} from "@mui/icons-material";
+
+import { AppContext } from "./AppProvider";
 
 export default function App() {
 	const inputRef = useRef();
+
+    const { mode, setMode } = useContext(AppContext);
 
 	const [data, setData] = useState([
 		{ id: 3, name: "Tomato", done: false },
@@ -48,13 +56,29 @@ export default function App() {
 		<div>
 			<AppBar position="static">
 				<Toolbar>
-					<Typography>
+					<Typography sx={{ flexGrow: 1 }}>
 						<Badge
-							badgeContent={data.length}
+							badgeContent={
+								data.filter(item => !item.done).length
+							}
 							color="error">
 							Todo
 						</Badge>
 					</Typography>
+
+					{mode == "dark" ? (
+						<IconButton
+							onClick={() => setMode("light")}
+							color="inherit">
+							<LightModeIcon />
+						</IconButton>
+					) : (
+						<IconButton
+							onClick={() => setMode("dark")}
+							color="inherit">
+							<DarkModeIcon />
+						</IconButton>
+					)}
 				</Toolbar>
 			</AppBar>
 
@@ -86,12 +110,12 @@ export default function App() {
 								key={item.id}
 								item={item}
 								remove={remove}
-                                toggle={toggle}
+								toggle={toggle}
 							/>
 						))}
 				</List>
 
-                <Divider />
+				<Divider />
 
 				<List>
 					{data
@@ -101,7 +125,7 @@ export default function App() {
 								key={item.id}
 								item={item}
 								remove={remove}
-                                toggle={toggle}
+								toggle={toggle}
 							/>
 						))}
 				</List>
