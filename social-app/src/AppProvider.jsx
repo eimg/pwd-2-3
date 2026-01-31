@@ -1,7 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 
-import App from "./App";
+import Routes from "./Routes";
 
 import { useState, createContext, useContext } from "react";
 
@@ -19,7 +19,7 @@ export default function AppPovider() {
 		<AppContext.Provider
 			value={{ mode, setMode, openDrawer, setOpenDrawer }}>
 			<ThemeProvider theme={theme}>
-				<App />
+				<Routes />
 				<CssBaseline />
 			</ThemeProvider>
 		</AppContext.Provider>
