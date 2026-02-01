@@ -8,7 +8,7 @@ import {
 	ListItemIcon,
 	ListItemText,
 } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { green, grey } from "@mui/material/colors";
 
 import {
 	Home as HomeIcon,
@@ -20,19 +20,27 @@ import {
 
 import { useApp } from "../AppProvider";
 
-export default function () {
-	const { openDrawer, setOpenDrawer } = useApp();
+import { useNavigate } from "react-router";
+
+export default function AppDrawer() {
+	const { openDrawer, setOpenDrawer, auth, setAuth } = useApp();
+	const navigate = useNavigate();
 
 	return (
 		<Drawer
 			open={openDrawer}
 			onClose={() => setOpenDrawer(false)}
 			onClick={() => setOpenDrawer(false)}>
-			<Box sx={{ background: grey[500], width: 300, height: 180 }}></Box>
+			<Box
+				sx={{
+					background: auth ? green[500] : grey[500],
+					width: 300,
+					height: 180,
+				}}></Box>
 
 			<List>
 				<ListItem>
-					<ListItemButton>
+					<ListItemButton onClick={() => navigate("/")}>
 						<ListItemIcon>
 							<HomeIcon />
 						</ListItemIcon>
@@ -40,38 +48,51 @@ export default function () {
 					</ListItemButton>
 				</ListItem>
 				<Divider />
-				<ListItem>
-					<ListItemButton>
-						<ListItemIcon>
-							<ProfileIcon />
-						</ListItemIcon>
-						<ListItemText primary="Profile" />
-					</ListItemButton>
-				</ListItem>
-				<ListItem>
-					<ListItemButton>
-						<ListItemIcon>
-							<LogoutIcon />
-						</ListItemIcon>
-						<ListItemText primary="Logout" />
-					</ListItemButton>
-				</ListItem>
-				<ListItem>
-					<ListItemButton>
-						<ListItemIcon>
-							<RegisterIcon />
-						</ListItemIcon>
-						<ListItemText primary="Register" />
-					</ListItemButton>
-				</ListItem>
-				<ListItem>
-					<ListItemButton>
-						<ListItemIcon>
-							<LoginIcon />
-						</ListItemIcon>
-						<ListItemText primary="Login" />
-					</ListItemButton>
-				</ListItem>
+
+				{auth && (
+					<>
+						<ListItem>
+							<ListItemButton
+								onClick={() => navigate("/profile")}>
+								<ListItemIcon>
+									<ProfileIcon />
+								</ListItemIcon>
+								<ListItemText primary="Profile" />
+							</ListItemButton>
+						</ListItem>
+						<ListItem>
+							<ListItemButton onClick={() => setAuth(undefined)}>
+								<ListItemIcon>
+									<LogoutIcon />
+								</ListItemIcon>
+								<ListItemText primary="Logout" />
+							</ListItemButton>
+						</ListItem>
+					</>
+				)}
+
+				{!auth && (
+					<>
+						<ListItem>
+							<ListItemButton
+								onClick={() => navigate("/register")}>
+								<ListItemIcon>
+									<RegisterIcon />
+								</ListItemIcon>
+								<ListItemText primary="Register" />
+							</ListItemButton>
+						</ListItem>
+						<ListItem>
+							<ListItemButton
+								onClick={() => navigate("/login")}>
+								<ListItemIcon>
+									<LoginIcon />
+								</ListItemIcon>
+								<ListItemText primary="Login" />
+							</ListItemButton>
+						</ListItem>
+					</>
+				)}
 			</List>
 		</Drawer>
 	);

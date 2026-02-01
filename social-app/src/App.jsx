@@ -11,7 +11,7 @@ export default function App() {
 			<Header />
 			<AppDrawer />
 
-			<Container maxWidth="md">
+			<Container maxWidth="sm">
 				<Outlet />
 			</Container>
 		</div>

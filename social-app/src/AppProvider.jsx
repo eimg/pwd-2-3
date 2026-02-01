@@ -10,6 +10,7 @@ const AppContext = createContext();
 export default function AppPovider() {
 	const [mode, setMode] = useState("dark");
 	const [openDrawer, setOpenDrawer] = useState(false);
+	const [auth, setAuth] = useState();
 
 	const theme = createTheme({
 		palette: { mode },
@@ -17,7 +18,7 @@ export default function AppPovider() {
 
 	return (
 		<AppContext.Provider
-			value={{ mode, setMode, openDrawer, setOpenDrawer }}>
+			value={{ mode, setMode, openDrawer, setOpenDrawer, auth, setAuth }}>
 			<ThemeProvider theme={theme}>
 				<Routes />
 				<CssBaseline />

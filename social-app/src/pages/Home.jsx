@@ -1,7 +1,10 @@
 import { Box, Typography } from "@mui/material";
+import Post from "../components/Post";
 
 export default function Home() {
-    return <Box>
-        <Typography variant="h1">Home</Typography>
+    return <Box sx={{ mt: 4 }}>
+        <Post />
+        <Post />
+        <Post />
     </Box>
 }
