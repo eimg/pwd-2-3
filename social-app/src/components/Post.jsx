@@ -1,14 +1,24 @@
-import { Avatar, Box, Button, ButtonGroup, Card, CardActionArea, IconButton, Typography } from "@mui/material";
+import {
+	Avatar,
+	Box,
+	Button,
+	ButtonGroup,
+	Card,
+	IconButton,
+	Typography,
+} from "@mui/material";
+
 import { green, grey } from "@mui/material/colors";
 
 import {
-    FavoriteBorderOutlined as LikeIcon,
-    ChatBubbleOutline as CommentIcon,
+	FavoriteBorderOutlined as LikeIcon,
+	ChatBubbleOutline as CommentIcon,
 } from "@mui/icons-material";
+
 import { useNavigate } from "react-router";
 
 export default function Post() {
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	return (
 		<Card sx={{ mb: 2, p: 3 }}>
@@ -25,11 +35,7 @@ export default function Post() {
 						a few seconds agao
 					</Typography>
 					<Typography onClick={() => navigate("/view")}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Rerum adipisci obcaecati in recusandae expedita. Iure
-						labore expedita omnis beatae soluta dolorem repudiandae?
-						Perspiciatis facilis dolorem odio architecto, suscipit
-						iusto fugit!
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum adipisci obcaecati in recusandae expedita. Iure labore expedita omnis beatae soluta dolorem repudiandae? Perspiciatis facilis dolorem odio architecto, suscipit iusto fugit!
 					</Typography>
 				</Box>
 			</Box>

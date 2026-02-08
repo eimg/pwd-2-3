@@ -8,6 +8,7 @@ import {
 	DarkMode as DarkModeIcon,
     ArrowBack as BackIcon,
 } from "@mui/icons-material";
+
 import { useLocation, useNavigate } from "react-router";
 
 export default function Header() {
@@ -20,17 +21,11 @@ export default function Header() {
 		<AppBar position="static">
 			<Toolbar>
 				{pathname == "/" ? (
-					<IconButton
-						sx={{ mr: 2 }}
-						color="inherit"
-						onClick={() => setOpenDrawer(true)}>
+					<IconButton sx={{ mr: 2 }} color="inherit" onClick={() => setOpenDrawer(true)}>
 						<MenuIcon />
 					</IconButton>
 				) : (
-					<IconButton
-						sx={{ mr: 2 }}
-						color="inherit"
-						onClick={() => navigate("/")}>
+					<IconButton sx={{ mr: 2 }} color="inherit" onClick={() => navigate("/")}>
 						<BackIcon />
 					</IconButton>
 				)}

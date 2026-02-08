@@ -1,4 +1,4 @@
-import { Box, Button, OutlinedInput, Typography } from "@mui/material";
+import { Box, Button, OutlinedInput } from "@mui/material";
 import Post from "../components/Post";
 import Comment from "../components/Comment";
 
@@ -8,15 +8,8 @@ export default function View() {
 			<Post />
 
 			<form>
-				<OutlinedInput
-					placeholder="your reply"
-					fullWidth
-					sx={{ mb: 2 }}
-				/>
-				<Button
-					variant="contained"
-					color="secondary"
-					fullWidth>
+				<OutlinedInput placeholder="your reply" fullWidth sx={{ mb: 2 }} />
+				<Button variant="contained" color="secondary" fullWidth>
 					Add Comment
 				</Button>
 			</form>

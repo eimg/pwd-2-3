@@ -11,9 +11,7 @@ export default function Post() {
 			sx={{
 				mb: 2,
 				p: 3,
-				borderWidth: 1,
-				borderStyle: "solid",
-				borderColor: "#99999920",
+				border: "1px solid #99999920",
 			}}>
 			<Box sx={{ display: "flex", gap: 2 }}>
 				<Box>
@@ -27,7 +25,7 @@ export default function Post() {
 					<Typography sx={{ color: grey[500] }}>
 						a few seconds agao
 					</Typography>
-					<Typography onClick={() => navigate("/view")}>
+					<Typography>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit.
 						Rerum adipisci obcaecati in recusandae expedita. Iure
 						labore expedita omnis beatae soluta dolorem.
