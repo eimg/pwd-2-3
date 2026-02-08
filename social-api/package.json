@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "dev": "tsx index.ts -w",
+        "dev": "tsx watch index.ts",
         "reset": "prisma migrate reset",
         "seed": "tsx prisma/seed.ts"
     },
@@ -14,6 +14,7 @@
     "devDependencies": {
         "@faker-js/faker": "^10.3.0",
         "@types/better-sqlite3": "^7.6.13",
+        "@types/cors": "^2.8.19",
         "@types/express": "^5.0.6",
         "@types/node": "^25.1.0",
         "prisma": "^7.3.0",

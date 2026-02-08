@@ -1,5 +1,11 @@
-import expres from "express";
-const app = expres();
+import express from "express";
+const app = express();
+
+import cors from "cors";
+app.use(cors());
+
+app.use(express.json());
+app.use(express.urlencoded());
 
 import { router as usersRouter } from "./routes/users";
 app.use("/users", usersRouter);
