@@ -1,5 +1,6 @@
 import { prisma } from "../libs/prisma";
 import { faker } from "@faker-js/faker";
+import bcrypt from "bcryptjs";
 
 async function main() {
 	console.log("User seeding started...");
@@ -9,7 +10,7 @@ async function main() {
 			name: "Alice",
 			username: "alice",
 			bio: "Alice's profile",
-			password: "password",
+			password: await bcrypt.hash("password", 10),
 		},
 	});
 
@@ -18,7 +19,7 @@ async function main() {
 			name: "Bob",
 			username: "bob",
 			bio: "Bob's bio",
-			password: "password",
+			password: await bcrypt.hash("password", 10),
 		},
 	});
 

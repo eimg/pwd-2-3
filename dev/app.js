@@ -16,7 +16,7 @@ function c() {
 
 async function app() {
     console.log( a() );
-    console.log( await b() );
+    console.log( await  b() );
     console.log( c() );
 }
 
