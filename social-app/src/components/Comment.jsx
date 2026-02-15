@@ -3,7 +3,7 @@ import { grey } from "@mui/material/colors";
 
 import { useNavigate } from "react-router";
 
-export default function Post() {
+export default function Comment({ comment }) {
 	const navigate = useNavigate();
 
 	return (
@@ -17,18 +17,16 @@ export default function Post() {
 				<Box>
 					<Avatar
 						sx={{ width: 48, height: 48, background: grey[500] }}>
-						A
+						{comment.user.name[0]}
 					</Avatar>
 				</Box>
 				<Box>
-					<Typography>Alice Rhys</Typography>
+					<Typography>{comment.user.name}</Typography>
 					<Typography sx={{ color: grey[500] }}>
-						a few seconds agao
+						{comment.createdAt}
 					</Typography>
 					<Typography>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Rerum adipisci obcaecati in recusandae expedita. Iure
-						labore expedita omnis beatae soluta dolorem.
+						{comment.content}
 					</Typography>
 				</Box>
 			</Box>

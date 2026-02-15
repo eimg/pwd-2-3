@@ -17,7 +17,7 @@ import {
 
 import { useNavigate } from "react-router";
 
-export default function Post() {
+export default function Post({ post }) {
 	const navigate = useNavigate();
 
 	return (
@@ -26,16 +26,16 @@ export default function Post() {
 				<Box>
 					<Avatar
 						sx={{ width: 52, height: 52, background: green[500] }}>
-						A
+						{post.user.name[0]}
 					</Avatar>
 				</Box>
 				<Box>
-					<Typography>Alice Rhys</Typography>
+					<Typography>{post.user.name}</Typography>
 					<Typography sx={{ color: green[500] }}>
-						a few seconds agao
+						{post.createdAt}
 					</Typography>
-					<Typography onClick={() => navigate("/view")}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum adipisci obcaecati in recusandae expedita. Iure labore expedita omnis beatae soluta dolorem repudiandae? Perspiciatis facilis dolorem odio architecto, suscipit iusto fugit!
+					<Typography onClick={() => navigate(`/view/${post.id}`)}>
+						{post.content}
 					</Typography>
 				</Box>
 			</Box>
@@ -58,7 +58,7 @@ export default function Post() {
 					<Button
 						size="sm"
 						variant="text">
-						10
+						{post.comments.length}
 					</Button>
 				</ButtonGroup>
 			</Box>

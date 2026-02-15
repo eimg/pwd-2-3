@@ -1,25 +1,50 @@
 import { Alert, Box, Button, OutlinedInput, Typography } from "@mui/material";
+import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 
+import { useNavigate } from "react-router";
+
+const api = "http://localhost:8800/users";
+
 export default function Register() {
+	const [error, setError] = useState();
+
+	const navigate = useNavigate();
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 
-	const onSubmit = data => console.log(data);
+	const onSubmit = async data => {
+		const res = await fetch(api, {
+			method: "POST",
+			body: JSON.stringify(data),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (res.ok) {
+			navigate("/login");
+		} else {
+			setError(true);
+		}
+	};
 
 	return (
 		<Box sx={{ mt: 4 }}>
 			<Typography variant="h3">Register</Typography>
 
-			<Alert
-				severity="warning"
-				sx={{ my: 3 }}>
-				Something went wrong
-			</Alert>
+			{error && (
+				<Alert
+					severity="warning"
+					sx={{ my: 3 }}>
+					Something went wrong
+				</Alert>
+			)}
 
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<OutlinedInput
