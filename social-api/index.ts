@@ -13,6 +13,9 @@ app.use("/users", usersRouter);
 import { router as postsRouter } from "./routes/posts";
 app.use("/posts", postsRouter);
 
+import { router as commentsRouter } from "./routes/comments";
+app.use("/comments", commentsRouter);
+
 app.get("/", (req, res) => {
     res.json({ msg: "API up and running..." });
 });

@@ -7,6 +7,8 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
+	Typography,
+	Avatar,
 } from "@mui/material";
 import { green, grey } from "@mui/material/colors";
 
@@ -36,7 +38,38 @@ export default function AppDrawer() {
 					background: auth ? green[500] : grey[500],
 					width: 300,
 					height: 180,
-				}}></Box>
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+					alignItems: "center",
+					color: "white",
+				}}>
+				{auth ? (
+					<>
+						<Avatar
+							sx={{ 
+								width: 64, 
+								height: 64, 
+								mb: 2,
+								bgcolor: "rgba(255,255,255,0.2)",
+								fontSize: "1.5rem"
+							}}
+						>
+							{auth.name[0]}
+						</Avatar>
+						<Typography variant="h6" sx={{ fontWeight: "bold" }}>
+							{auth.name}
+						</Typography>
+						<Typography variant="body2" sx={{ opacity: 0.8 }}>
+							@{auth.username}
+						</Typography>
+					</>
+				) : (
+					<Typography variant="h6">
+						Welcome to Social
+					</Typography>
+				)}
+			</Box>
 
 			<List>
 				<ListItem>
@@ -61,7 +94,10 @@ export default function AppDrawer() {
 							</ListItemButton>
 						</ListItem>
 						<ListItem>
-							<ListItemButton onClick={() => setAuth(undefined)}>
+							<ListItemButton onClick={() => {
+								localStorage.removeItem("token");
+								setAuth(undefined);
+							}}>
 								<ListItemIcon>
 									<LogoutIcon />
 								</ListItemIcon>

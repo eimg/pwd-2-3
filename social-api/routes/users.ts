@@ -17,6 +17,44 @@ router.get("/verify", auth, async (req, res) => {
     res.json(user);
 });
 
+router.get("/profile", auth, async (req, res) => {
+    const userId = res.locals.user.id as number;
+    
+    const user = await prisma.user.findFirst({
+        where: { id: userId },
+        include: {
+            posts: {
+                orderBy: { createdAt: "desc" },
+                take: 20,
+                include: {
+                    user: true,
+                    comments: {
+                        include: { user: true }
+                    },
+                    likes: {
+                        include: { user: true }
+                    },
+                    _count: {
+                        select: { likes: true }
+                    }
+                }
+            },
+            _count: {
+                select: {
+                    posts: true,
+                    comments: true
+                }
+            }
+        }
+    });
+
+    if (!user) {
+        return res.status(404).json({ msg: "User not found" });
+    }
+
+    res.json(user);
+});
+
 router.post("/", async (req, res) => {
 	const name = req.body?.name;
 	const username = req.body?.username;
