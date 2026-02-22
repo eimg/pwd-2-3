@@ -8,11 +8,12 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="index"
 				options={{
-					tabBarIcon: color => {
+					tabBarIcon: ({ color }) => {
 						return (
 							<Ionicons
 								name="home"
 								size={24}
+								color={color}
 							/>
 						);
 					},
@@ -21,11 +22,12 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="profile"
 				options={{
-					tabBarIcon: color => {
+					tabBarIcon: ({ color }) => {
 						return (
 							<Ionicons
 								name="person"
 								size={24}
+								color={color}
 							/>
 						);
 					},
