@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import type { PostType } from "@/types/global";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { router } from "expo-router";
 
 export default function Post({ post }: { post: PostType }) {
 	return (
@@ -22,17 +23,19 @@ export default function Post({ post }: { post: PostType }) {
 						alignItems: "center",
 					}}>
 					<Text style={{ color: "white", fontSize: 18 }}>
-                        {post.user.name[0]}
-                    </Text>
+						{post.user.name[0]}
+					</Text>
 				</View>
 				<View style={{ flexShrink: 1 }}>
 					<Text style={{ fontWeight: "bold", fontSize: 16 }}>
 						{post.user.name}
 					</Text>
 					<Text style={{ color: "green" }}>{post.createdAt}</Text>
-					<Text style={{ fontSize: 16, marginTop: 8 }}>
-						{post.content}
-					</Text>
+					<TouchableOpacity onPress={() => router.push(`/view/${post.id}`)}>
+						<Text style={{ fontSize: 16, marginTop: 8 }}>
+							{post.content}
+						</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 			<View
@@ -72,7 +75,7 @@ export default function Post({ post }: { post: PostType }) {
 						/>
 					</TouchableOpacity>
 					<TouchableOpacity>
-						<Text>3</Text>
+						<Text>{post.comments.length}</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

@@ -13,6 +13,12 @@ export default function RootLayout() {
 						title: "Home",
 					}}
 				/>
+				<Stack.Screen
+					name="view/[id]"
+					options={{
+						title: "View",
+					}}
+				/>
 			</Stack>
 		</QueryClientProvider>
 	);
