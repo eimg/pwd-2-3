@@ -30,12 +30,9 @@ export default function Comment({ comment }: { comment: CommentType }) {
 					<Text style={{ fontWeight: "bold", fontSize: 16 }}>
 						{comment.user.name}
 					</Text>
-					<TouchableOpacity
-						onPress={() => router.push(`/view/${comment.id}`)}>
-						<Text style={{ fontSize: 16, marginTop: 8 }}>
-							{comment.content}
-						</Text>
-					</TouchableOpacity>
+					<Text style={{ fontSize: 16, marginTop: 8 }}>
+						{comment.content}
+					</Text>
 				</View>
 			</View>
 		</View>

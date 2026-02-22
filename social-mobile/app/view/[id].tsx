@@ -54,7 +54,7 @@ export default function ViewPost() {
 
 	return (
 		<ScrollView>
-			<Post post={post} />
+			{post && <Post post={post} />}
 			<View style={{ paddingHorizontal: 16 }}>
 				<TextInput
 					style={{
@@ -63,17 +63,22 @@ export default function ViewPost() {
 						fontSize: 18,
 						borderWidth: 1,
 						borderColor: "#99999980",
-                        marginBottom: 6,
+						marginBottom: 6,
 					}}
 					placeholder="Your reply"
 				/>
-                <Button>Add Comment</Button>
+				<Button>Add Comment</Button>
 
-                <View style={{ marginTop: 10 }}>
-                    {post?.comments.map(comment => {
-                        return <Comment key={comment.id} comment={comment} />
-                    })}
-                </View>
+				<View style={{ marginTop: 10 }}>
+					{post?.comments.map(comment => {
+						return (
+							<Comment
+								key={comment.id}
+								comment={comment}
+							/>
+						);
+					})}
+				</View>
 			</View>
 		</ScrollView>
 	);
