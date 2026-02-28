@@ -1,22 +1,30 @@
 import { router, Stack } from "expo-router";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View, Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import AppProvider from "@/components/AppProvider";
+import AppProvider, { useApp } from "@/components/AppProvider";
 
 const queryClient = new QueryClient();
 
-export default function RootLayout() {
+function AppContent() {
+	const { isLoading, user } = useApp();
+
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+				<Text>Loading...</Text>
+			</View>
+		);
+	}
+
 	return (
-		<QueryClientProvider client={queryClient}>
-			<AppProvider>
-				<Stack>
+		<Stack>
 					<Stack.Screen
 						name="(home)"
 						options={{
 							title: "Home",
-							headerRight: () => (
+							headerRight: () => user ? (
 								<TouchableOpacity
 									onPress={() => router.push("/new-post")}>
 									<Ionicons
@@ -25,7 +33,7 @@ export default function RootLayout() {
 										color="black"
 									/>
 								</TouchableOpacity>
-							),
+							) : null,
 						}}
 					/>
 					<Stack.Screen
@@ -41,7 +49,15 @@ export default function RootLayout() {
                             presentation: "modal",
                         }}
                     />
-				</Stack>
+		</Stack>
+	);
+}
+
+export default function RootLayout() {
+	return (
+		<QueryClientProvider client={queryClient}>
+			<AppProvider>
+				<AppContent />
 			</AppProvider>
 		</QueryClientProvider>
 	);

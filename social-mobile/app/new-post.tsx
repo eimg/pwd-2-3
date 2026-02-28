@@ -3,8 +3,9 @@ import { router } from "expo-router";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useQueryClient } from "@tanstack/react-query";
+import { API_BASE_URL } from "@/utils/api";
 
-const api = "http://192.168.1.4:8800/posts";
+const api = `${API_BASE_URL}/posts`;
 
 export default function NewPost() {
 	const [content, setContent] = useState("");

@@ -5,13 +5,12 @@ import {
 	Text,
 	View,
 } from "react-native";
-
-const api = "http://192.168.1.4:8800/posts";
+import { API_BASE_URL } from "@/utils/api";
 
 import type { PostType } from "@/types/global";
 
 async function fetchPosts(): Promise<PostType[]> {
-	const res = await fetch(api);
+	const res = await fetch(`${API_BASE_URL}/posts`);
 	return res.json();
 }
 
