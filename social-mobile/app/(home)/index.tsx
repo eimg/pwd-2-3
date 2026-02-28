@@ -1,13 +1,17 @@
 import Post from "@/components/post";
 import { useQuery } from "@tanstack/react-query";
-import { ScrollView, Text, View } from "react-native";
+import {
+	ScrollView,
+	Text,
+	View,
+} from "react-native";
 
-const api = "http://localhost:8800/posts";
+const api = "http://192.168.1.4:8800/posts";
 
 import type { PostType } from "@/types/global";
 
 async function fetchPosts(): Promise<PostType[]> {
-    const res = await fetch(api);
+	const res = await fetch(api);
 	return res.json();
 }
 
@@ -50,8 +54,13 @@ export default function Home() {
 	return (
 		<ScrollView>
 			{posts?.map(post => {
-                return <Post key={post.id} post={post} />
-            })}
+				return (
+					<Post
+						key={post.id}
+						post={post}
+					/>
+				);
+			})}
 		</ScrollView>
 	);
 }

@@ -1,10 +1,16 @@
-import { Text, View, Button, TextInput, Alert } from "react-native";
+import {
+	Text,
+	View,
+	TextInput,
+	Alert,
+	TouchableOpacity,
+} from "react-native";
 import { useState } from "react";
 import { useApp } from "@/components/AppProvider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 
-const api = "http://localhost:8800/users/login";
+const api = "http://192.168.1.4:8800/users/login";
 
 export default function Profile() {
 	const { user, setUser } = useApp();
@@ -57,10 +63,23 @@ export default function Profile() {
 							{user.username}
 						</Text>
 					</View>
-					<Button
-						title="Logout"
+					<TouchableOpacity
 						onPress={() => setUser(null)}
-					/>
+						style={{
+							backgroundColor: "red",
+							paddingVertical: 10,
+                            paddingHorizontal: 20,
+							borderRadius: 20,
+						}}>
+						<Text
+							style={{
+								color: "white",
+								fontSize: 18,
+								fontWeight: "bold",
+							}}>
+							Logout
+						</Text>
+					</TouchableOpacity>
 				</View>
 			) : (
 				<View
@@ -110,10 +129,26 @@ export default function Profile() {
 							alignSelf: "center",
 						}}
 					/>
-					<Button
-						title="Login"
+					<TouchableOpacity
 						onPress={login}
-					/>
+						style={{
+                            width: "80%",
+                            alignSelf: "center",
+							backgroundColor: "#007AFF",
+							padding: 10,
+							borderRadius: 20,
+                            alignItems: "center",
+                            justifyContent: "center",
+						}}>
+						<Text
+							style={{
+								color: "white",
+								fontSize: 18,
+								fontWeight: "bold",
+							}}>
+							Login
+						</Text>
+					</TouchableOpacity>
 				</View>
 			)}
 		</View>
